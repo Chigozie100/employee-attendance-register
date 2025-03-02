@@ -26,7 +26,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     private final EmployeeRepository employeeRepository;
 
     @Override
-    public AttendanceResponse registerAttendance(Long employeeId, AttendanceStatus status) {
+    public void registerAttendance(Long employeeId, AttendanceStatus status) {
         log.info("Registering attendance for employee {}", employeeId);
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new CustomException(404, "Employee not found"));
@@ -40,7 +40,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
         Attendance attendance1 = attendanceRepository.save(attendance);
         log.info("Registered attendance for employee {}", employeeId);
-        return getAttendanceResponse(attendance1);
+        getAttendanceResponse(attendance1);
     }
 
     @Override
