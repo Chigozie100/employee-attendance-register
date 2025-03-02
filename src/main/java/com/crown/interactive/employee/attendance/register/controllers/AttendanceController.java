@@ -42,7 +42,7 @@ public class AttendanceController {
             List<AttendanceResponse> attendance = attendanceService.getAttendanceByEmployeeAndDateRange(employeeId, startDate, endDate);
             return ResponseEntity.status(HttpStatus.OK).body(attendance);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad Request");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
