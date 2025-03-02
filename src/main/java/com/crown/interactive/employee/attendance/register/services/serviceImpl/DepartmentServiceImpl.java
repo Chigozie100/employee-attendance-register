@@ -1,6 +1,8 @@
 package com.crown.interactive.employee.attendance.register.services.serviceImpl;
 
+import com.crown.interactive.employee.attendance.register.dtos.requests.DepartmentRequest;
 import com.crown.interactive.employee.attendance.register.dtos.responses.DepartmentResponse;
+import com.crown.interactive.employee.attendance.register.exception.CustomException;
 import com.crown.interactive.employee.attendance.register.model.Department;
 import com.crown.interactive.employee.attendance.register.repositories.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,18 @@ public class DepartmentServiceImpl implements DepartmentService {
         log.info("get all departments");
         List<Department> departments = departmentRepository.findAll();
         return departments.stream().map(this::getDepartmentResponse).collect(Collectors.toList());
+    }
+
+    @Override
+    public void createDepartment(DepartmentRequest request) {
+        log.info("Creating department: {}", request);
+
+        if (departmentRepository.existsByName(request.getName())) {
+            throw new CustomException(400, "Department already exists");
+        }
+        Department department = Department.builder().name(request.getName()).build();
+        departmentRepository.save(department);
+        log.info("Department created");
     }
 
     private DepartmentResponse getDepartmentResponse(Department department) {

@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -24,7 +26,11 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private EmployeeType employeeType;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
+    @ManyToMany
+    @JoinTable(
+            name = "employee_department",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "department_id")
+    )
+    private List<Department> departments;
 }

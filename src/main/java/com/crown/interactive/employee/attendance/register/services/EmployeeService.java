@@ -1,17 +1,20 @@
 package com.crown.interactive.employee.attendance.register.services;
 
+import com.crown.interactive.employee.attendance.register.dtos.requests.EmployeeRequest;
+import com.crown.interactive.employee.attendance.register.dtos.requests.UpdateEmployeeRequest;
+import com.crown.interactive.employee.attendance.register.dtos.responses.EmployeeResponse;
 import com.crown.interactive.employee.attendance.register.model.Employee;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface EmployeeService {
-    Employee addEmployee(Employee employee);
+    void createEmployee(EmployeeRequest employeeRequest);
 
-    List<Employee> getAllEmployees();
+    List<EmployeeResponse> getAllEmployees();
 
-    Optional<Employee> getEmployeeById(Long employeeId);
+    EmployeeResponse getEmployeeById(Long employeeId);
 
-    Employee updateEmployee(Employee employee);
+    void updateEmployee(Long employeeId, UpdateEmployeeRequest employeeRequest);
 
+    List<EmployeeResponse> getEmployeesByDepartment(Long departmentId);
 }
