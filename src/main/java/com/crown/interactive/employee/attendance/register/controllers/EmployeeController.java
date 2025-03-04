@@ -23,7 +23,7 @@ public class EmployeeController {
             employeeService.createEmployee(employee);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Invalid request");
         }
     }
 
@@ -33,7 +33,7 @@ public class EmployeeController {
             employeeService.updateEmployee(id, employee);
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid request");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Invalid request");
         }
     }
 
@@ -42,7 +42,7 @@ public class EmployeeController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(employeeService.getAllEmployees());
         }catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -51,7 +51,7 @@ public class EmployeeController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(employeeService.getEmployeeById(id));
         }catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -60,7 +60,7 @@ public class EmployeeController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(employeeService.getEmployeesByDepartment(departmentId));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 

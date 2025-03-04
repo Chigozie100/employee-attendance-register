@@ -26,7 +26,7 @@ public class DepartmentController {
         try{
             return ResponseEntity.status(HttpStatus.OK).body(allDepartments);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -37,7 +37,7 @@ public class DepartmentController {
             departmentService.createDepartment(request);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
 
     }
