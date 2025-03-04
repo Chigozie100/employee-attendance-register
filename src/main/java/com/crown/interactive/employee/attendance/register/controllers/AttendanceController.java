@@ -37,6 +37,7 @@ public class AttendanceController {
             @PathVariable Long employeeId,
             @RequestParam LocalDate startDate,
             @RequestParam LocalDate endDate) {
+
         log.info("get attendance for employee {} and startDate {}", employeeId, startDate);
         try{
             List<AttendanceResponse> attendance = attendanceService.getAttendanceByEmployeeAndDateRange(employeeId, startDate, endDate);
